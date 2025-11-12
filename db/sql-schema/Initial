@@ -1,0 +1,34 @@
+drop table if exists users cascade ;
+create table users(
+	id serial not null,
+	name varchar(255) not null,
+	email varchar(255) not null unique,
+	password varchar(255) not null,
+	constraint users_pk primary key(id)
+);
+drop table if exists blogs cascade;
+create table blogs(
+	id serial not null,
+	title varchar(255) not null ,
+	content varchar (10000) not null,
+	author_id integer not null ,
+	created_at timestamp default(now()) ,
+	likes integer default (0),
+	constraint blogs_pk primary key(id),
+	constraint blogs_users_fg foreign key (author_id) references users(id) 
+);
+
+drop table if exists comments cascade;
+create table comments(
+	id serial not null,
+	author_name varchar(255) not null,
+	content varchar(1000) not null,
+	blog_id integer not null,
+	created_at timestamp default(now()),
+	constraint comments_pk primary key(id),
+	constraint comments_blogs_fg foreign key (blog_id) references blogs (id) on delete cascade
+);
+
+
+
+
