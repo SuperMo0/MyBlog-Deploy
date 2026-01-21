@@ -1,7 +1,5 @@
 export default async function apiRequest(path, options = {}) {
-
-    let baseUrl = import.meta.env.VITE_API;
-    let url = baseUrl + path;
+    let url = path;
     let token = localStorage.getItem('token');
 
     let response = await fetch(url, {
