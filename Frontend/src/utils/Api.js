@@ -1,5 +1,5 @@
 export default async function apiRequest(path, options = {}) {
-    let url = '/api' + path;
+    let url = import.meta.env.MODE === 'development' ? 'http://localhost:3000/api' + path : '/api' + path;
     let token = localStorage.getItem('token');
 
     let response = await fetch(url, {
