@@ -9,13 +9,11 @@ import path from 'path'
 const app = express();
 app.use(cors())
 
-app.use('/blogs', guestRouter);
-app.use('/admin', adminRouter);
+app.use('/api/blogs', guestRouter);
+app.use('/api/admin', adminRouter);
 
-if (process.env.MODE != 'development') {
+if (process.env.NODE_ENV != 'development') {
     const staticPath = path.join(process.cwd(), 'Frontend/dist');
-    console.log(staticPath);
-
 
     app.use(express.static(path.join(staticPath)));
 

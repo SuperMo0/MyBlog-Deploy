@@ -1,5 +1,5 @@
 export default async function apiRequest(path, options = {}) {
-    let url = path;
+    let url = '/api' + path;
     let token = localStorage.getItem('token');
 
     let response = await fetch(url, {
