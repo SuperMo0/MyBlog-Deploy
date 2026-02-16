@@ -17,8 +17,8 @@
   "scripts": {
     "postinstall": "npm install --prefix Frontend",
     "build": "npm run build --prefix Frontend",
-    "start": "node index.js",
-    "dev": "MODE=development node --watch index.js"
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development node --watch index.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -28,5 +28,8 @@
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.16.3"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": "24.12.0"
+  }
 }

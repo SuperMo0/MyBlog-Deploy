@@ -11,7 +11,7 @@ export async function authenticateAdmin(req, res) {
     try {
         const user = await queries.getAdmin(req.body.email);
 
-        console.log(req.body.password, user.password);
+        // console.log(req.body.password, user.password);
 
         if (!user || !(req.body.password == user.password)) {   // we should hash passwords in the database and use bcrypt compare 
             return res.status(401).json({ message: 'Invalid email or password' });
