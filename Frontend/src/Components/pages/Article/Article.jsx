@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useMemo, useState } from 'react';
 import { useParams } from 'react-router';
 import DOMPurify from 'dompurify';
 import prism from 'prismjs';
@@ -9,6 +9,7 @@ import Comments from './../../Comments/Comments.jsx';
 export default function Article({ preview, previewContent }) {
     const { id } = useParams();
     const [article, setArticle] = useState(previewContent || null);
+    const articleRef = useRef(null);
 
     useEffect(() => {
         if (preview) return;
@@ -25,12 +26,19 @@ export default function Article({ preview, previewContent }) {
     }, [id, preview]);
 
     useEffect(() => {
-        if (article) prism.highlightAll();
-    }, [article]);
+        if (!article || !articleRef.current) return;
+        articleRef.current.querySelectorAll('code[class*="language-"]').forEach(el => {
+            el.removeAttribute('data-highlighted');
+        });
+        prism.highlightAllUnder(articleRef.current);
+    });
+
+    const sanitizedHTML = useMemo(
+        () => article ? DOMPurify.sanitize(article.content, { ADD_ATTR: ['target'] }) : '',
+        [article]
+    );
 
     if (!article && !preview) return <div className="text-center py-20">Loading...</div>;
-
-    const sanitizedHTML = DOMPurify.sanitize(article.content, { ADD_ATTR: ['target'] });
 
     return (
         <div className="wrapper py-12">
@@ -46,6 +54,7 @@ export default function Article({ preview, previewContent }) {
             </header>
 
             <article
+                ref={articleRef}
                 className="prose prose-lg dark:prose-invert max-w-3xl mx-auto 
                 prose-a:text-(--accent) prose-img:rounded-xl prose-img:w-full 
                 prose-pre:bg-[#1d1f21] prose-pre:shadow-lg prose-pre:border prose-pre:border-gray-700"
