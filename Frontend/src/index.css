@@ -1,8 +1,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-body: 'Merriweather', serif;
+  --font-body: "Merriweather", serif;
 }
 
 @layer base {
@@ -12,7 +13,7 @@
     --bg-card: #ffffff;
     --text-primary: #1e293b;
     --text-secondary: #64748b;
-    --accent: #FF4B2B;
+    --accent: #ff4b2b;
     --accent-hover: #e0381a;
     --border-color: #e2e8f0;
   }
@@ -23,7 +24,7 @@
     --bg-card: #1e293b;
     --text-primary: #f1f5f9;
     --text-secondary: #94a3b8;
-    --accent: #FF4B2B;
+    --accent: #ff4b2b;
     --accent-hover: #ff6b4f;
     --border-color: #334155;
   }
@@ -38,7 +39,7 @@
   .wrapper {
     @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative;
   }
-  
+
   .btn-primary {
     @apply px-6 py-2.5 bg-(--accent) text-white font-medium rounded-lg 
            hover:bg-(--accent-hover) active:scale-95 transition-all duration-200 
@@ -58,27 +59,55 @@
     --c2: #cdcbcc;
     --c3: #999999;
     --_g: 0 120deg, #0000 0;
-    
+
     background:
-        conic-gradient(at calc(250%/3) calc(100%/3), var(--c3) var(--_g)),
-        conic-gradient(from -120deg at calc(50%/3) calc(100%/3), var(--c2) var(--_g)),
-        conic-gradient(from 120deg at calc(100%/3) calc(250%/3), var(--c1) var(--_g)),
-        conic-gradient(from 120deg at calc(200%/3) calc(250%/3), var(--c1) var(--_g)),
-        conic-gradient(from -180deg at calc(100%/3) 50%, var(--c2) 60deg, var(--c1) var(--_g)),
-        conic-gradient(from 60deg at calc(200%/3) 50%, var(--c1) 60deg, var(--c3) var(--_g)),
-        conic-gradient(from -60deg at 50% calc(100%/3), var(--c1) 120deg, var(--c2) 0 240deg, var(--c3) 0);
-    background-size: calc(var(--s)*sqrt(3)) var(--s);
+      conic-gradient(at calc(250% / 3) calc(100% / 3), var(--c3) var(--_g)),
+      conic-gradient(
+        from -120deg at calc(50% / 3) calc(100% / 3),
+        var(--c2) var(--_g)
+      ),
+      conic-gradient(
+        from 120deg at calc(100% / 3) calc(250% / 3),
+        var(--c1) var(--_g)
+      ),
+      conic-gradient(
+        from 120deg at calc(200% / 3) calc(250% / 3),
+        var(--c1) var(--_g)
+      ),
+      conic-gradient(
+        from -180deg at calc(100% / 3) 50%,
+        var(--c2) 60deg,
+        var(--c1) var(--_g)
+      ),
+      conic-gradient(
+        from 60deg at calc(200% / 3) 50%,
+        var(--c1) 60deg,
+        var(--c3) var(--_g)
+      ),
+      conic-gradient(
+        from -60deg at 50% calc(100% / 3),
+        var(--c1) 120deg,
+        var(--c2) 0 240deg,
+        var(--c3) 0
+      );
+    background-size: calc(var(--s) * sqrt(3)) var(--s);
   }
-  
+
   [data-dark="true"] .article-card-custom {
     --s: 166px;
     --c1: #1d1d1d;
     --c2: #4e4f51;
     --c3: #3c3c3c;
-    
+
     background:
-        repeating-conic-gradient(from 30deg, #0000 0 120deg, var(--c3) 0 50%) calc(var(--s)/2) calc(var(--s)*tan(30deg)/2),
-        repeating-conic-gradient(from 30deg, var(--c1) 0 60deg, var(--c2) 0 120deg, var(--c3) 0 50%);
-    background-size: var(--s) calc(var(--s)*tan(30deg));
+      repeating-conic-gradient(from 30deg, #0000 0 120deg, var(--c3) 0 50%)
+        calc(var(--s) / 2) calc(var(--s) * tan(30deg) / 2),
+      repeating-conic-gradient(
+        from 30deg,
+        var(--c1) 0 60deg,
+        var(--c2) 0 120deg,
+        var(--c3) 0 50%
+      );
+    background-size: var(--s) calc(var(--s) * tan(30deg));
   }
 }
