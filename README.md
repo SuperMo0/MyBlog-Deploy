@@ -11,12 +11,4 @@ A full-stack blog platform featuring a public reader interface and an admin dash
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ![Project Demo](./preview/app.gif)
-## Features
-
-* **Admin Dashboard:** Secure login with JWT for creating and managing posts.
-* **Rich Text Editor:** Integrated TinyMCE for formatting articles.
-* **User Interaction:** Like system and comments for reader engagement.
-* **Theming:** Dark and Light mode support.
-
-API : https://github.com/SuperMo0/My-Blog-API
 
